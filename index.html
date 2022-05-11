@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Data</title>
+    <style>
+        *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: grey;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 100%;
+    gap: 10px;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.container {
+    background: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+p.Unsernamebox {
+    font-size: 14px;
+    text-align: center;
+    color: gray;
+}
+p.namebox {
+    margin: 3px 0 0;
+    font-size: 15px;
+    text-align: center;
+    font-family: none;
+}
+    </style>
+
+</head>
+<body>
+    <script>
+fetch("https://randomuser.me/api/?results=500").then(x => x.json()).then((data) => {
+    for (let arr of data.results) {
+        console.log(arr.name)
+        let image = document.createElement("img"),
+            myName = document.createElement("p"),
+            countryName = document.createElement("p"),
+            container = document.createElement("div");
+        myName.setAttribute("class", "namebox");
+        countryName.setAttribute("class", "Unsernamebox");
+        container.setAttribute("class", "container");
+        image.setAttribute("src", arr.picture.medium);
+        myName.innerHTML = arr.name.first + " " + arr.name.last;
+        countryName.innerHTML = arr.location.country;
+        document.body.append(container)
+        container.append(image, myName, countryName)
+    }
+}).catch(err=>document.body.append(err));
+    </script>
+</body>
+
+</html>
