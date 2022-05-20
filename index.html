@@ -5,63 +5,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch Data</title>
-    <style>
-        *{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-body{
-    background-color: grey;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    width: 100%;
-    gap: 10px;
-    box-sizing: border-box;
-    padding: 10px;
-}
-.container {
-    background: #fff;
-    border-radius: 5px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-}
-p.Unsernamebox {
-    font-size: 14px;
-    text-align: center;
-    color: gray;
-}
-p.namebox {
-    margin: 3px 0 0;
-    font-size: 15px;
-    text-align: center;
-    font-family: none;
-}
-    </style>
+    <title>UIT-1 (CREATING POPUP-MODAL AND FETCHING DATA ON IT)</title>
 
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-    <script>
-fetch("https://randomuser.me/api/?results=500").then(x => x.json()).then((data) => {
-    for (let arr of data.results) {
-        console.log(arr.name)
-        let image = document.createElement("img"),
-            myName = document.createElement("p"),
-            countryName = document.createElement("p"),
-            container = document.createElement("div");
-        myName.setAttribute("class", "namebox");
-        countryName.setAttribute("class", "Unsernamebox");
-        container.setAttribute("class", "container");
-        image.setAttribute("src", arr.picture.medium);
-        myName.innerHTML = arr.name.first + " " + arr.name.last;
-        countryName.innerHTML = arr.location.country;
-        document.body.append(container)
-        container.append(image, myName, countryName)
-    }
-}).catch(err=>document.body.append(err));
-    </script>
+    <button class="open-modal">Click for Quotes</button>
+    <div class="big_box hide">
+        <div class="box">
+            <p class="closeIconBox"><i class="close-modal fa fa-close"></i></p>
+            <p class="head">Welcome &#128515;</p>
+            <p class="quote"></p>
+            <p class="author"></p>
+            <p class="counter">1/10</p>
+            <p class="buttonBox">
+                <button class="prev btn">Prev</button>
+                <button class="random btn">Random</button>
+                <button class="next btn">Next</button>
+            </p>
+        </div>
+    </div>
+    <script src="index.js"></script>
 </body>
 
 </html>
